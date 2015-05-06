@@ -134,7 +134,7 @@
 			data = data.join(' ');
 
 		if ( data.match(regex) )
-			return data.match(regex);
+			return data.match(regex).join(' ');
 
 		return false;
 	}
