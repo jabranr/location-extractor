@@ -122,19 +122,24 @@
 
 	/**
 	 * Fetch PostCode
+	 * RegExps from gskinner regexr.com community
 	 *
 	 * @scope: private
 	 * @param: data String
 	 * @return: String
 	 */
 	function fetchPostCode(data) {
-		var regex = /(GIR 0AA|[A-PR-UWYZ]([0-9]{1,2}|([A-HK-Y][0-9]|[A-HK-Y][0-9]([0-9]|[ABEHMNPRV-Y]))|[0-9][A-HJKS-UW]) [0-9][ABD-HJLNP-UW-Z]{2})/ig;
+		var UKRegExp = /(GIR 0AA|[A-PR-UWYZ]([0-9]{1,2}|([A-HK-Y][0-9]|[A-HK-Y][0-9]([0-9]|[ABEHMNPRV-Y]))|[0-9][A-HJKS-UW]) [0-9][ABD-HJLNP-UW-Z]{2})/ig;
+		var USRegExp = /^\d{5}(\-?\d{4})?$/gm;
 
 		if ( typeof data === 'array' )
 			data = data.join(' ');
 
-		if ( data.match(regex) )
-			return data.match(regex).join(' ');
+		if ( data.match(UKRegExp) )
+			return data.match(UKRegExp).join(' ');
+
+		if ( data.match(USRegExp) )
+			return data.match(USRegExp).join(' ');
 
 		return false;
 	}
