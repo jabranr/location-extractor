@@ -1,7 +1,6 @@
 {
   "name": "location-extractor",
   "main": "src/location-extractor.js",
-  "version": "1.0.0",
   "authors": [
     "Jabran Rafique <hello@jabran.me>"
   ],
@@ -24,7 +23,14 @@
     "test",
     "tests"
   ],
-  "devDependencies": {
-    "location-extractor": "https://github.com/jabranr/location-extractor.git"
-  }
+  "_release": "a8671ccb83",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "a8671ccb83dc97947f58d21f434f030db14d224f"
+  },
+  "_source": "https://github.com/jabranr/location-extractor.git",
+  "_target": "*",
+  "_originalSource": "https://github.com/jabranr/location-extractor.git",
+  "_direct": true
 }

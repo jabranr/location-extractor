@@ -1,0 +1,55 @@
+<!doctype HTML>
+<html>
+	<head>
+		<title>Location Extractor</title>
+		<style>
+			body {
+				font-family: sans-serif;
+				font-size: 16px;
+				line-height: 1.5;
+				margin: 0;
+				padding: 0;
+			}
+
+			.container {
+				display: block;
+				width: 100%;
+				max-width: 900px;
+				background-color: #eee;
+				margin: 0 auto;
+				padding: 15px;
+			}
+			code {
+				font-family: monospace;
+				font-size: 90%;
+				font-weight: bold;
+				background-color: #ddd;
+				display: inline-block;
+				padding: 0 4px;
+			}
+		</style>
+		<script src="//code.jquery.com/jquery.js"></script>
+		<script src="//maps.googleapis.com/maps/api/js?v=3"></script>
+		<script src="bower_components/location-extractor/src/location-extractor.js"></script>
+		<script>
+			$(document).ready(function() {
+				var $output = $('#output');
+				var text = 'do you know hotel around queen street, Victoria London W1T 2RH';
+				var extractor = new LocationExtractor(text);
+				extractor.clean();
+				console.log('Input data: ' + text);
+				console.log('Simplified data: ' + extractor.data);
+				extractor.extract(function(data) {
+					console.log(data.data[0]);
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<div class="container">
+			<h1>Location Extractor</h1>
+			<p>There is nothing to see at this page. Open the console <code>(CMD/CTRL + OPTION/ALT + J/C)</code> to see the output result.</p>
+			<p><small>&larr; <a href="https://github.com/jabranr/location-extractor">Back to Github</a></small></p>
+		</div>
+	</body>
+</html>
