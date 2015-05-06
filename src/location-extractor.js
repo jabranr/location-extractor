@@ -11,7 +11,7 @@
 /**
  * Class constructor
  *
- * @param data String
+ * @param data String|Array
  * @return Object
  */
 
@@ -56,9 +56,11 @@ LocationExtractor.prototype = {
 			stopWords = stopWords.split(' ');
 		this.stopWords = stopWords;
 	},
-	extract: function() {
-		this.stopWords = this.stopWords.concat( getStopWords() );
+	clean: function() {
+		if ( typeof this.data !== 'string' )
+			this.data = this.data.join(' ');
 
+		this.stopWords = this.stopWords.concat( getStopWords() );
 		this.data = cleanURL(this.data);
 		this.data = cleanMention(this.data);
 		this.data = cleanPunctuation(this.data);
