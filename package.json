@@ -1,0 +1,23 @@
+{
+  "name": "location-extractor",
+  "version": "1.0.0",
+  "description": "Extract location from a string/tweet",
+  "main": "src/location-extractor.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jabranr/location-extractor"
+  },
+  "keywords": [
+    "Location",
+    "Extract"
+  ],
+  "author": "Jabran Rafique <hello@jabran.me>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jabranr/location-extractor/issues"
+  },
+  "homepage": "https://github.com/jabranr/location-extractor"
+}

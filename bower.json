@@ -1,0 +1,27 @@
+{
+  "name": "location-extractor",
+  "main": "src/location-extractor.js",
+  "version": "1.0.0",
+  "authors": [
+    "Jabran Rafique <hello@jabran.me>"
+  ],
+  "description": "Extract location from a string/tweet",
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "Location",
+    "Extract"
+  ],
+  "license": "MIT",
+  "homepage": "http://jabran.me",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
