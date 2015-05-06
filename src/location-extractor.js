@@ -52,6 +52,38 @@
 		return this.data;
 	}
 
+	LocationExtractor.prototype.extract = function(callback) {
+		if ( typeof google === 'undefined' )
+			throw new Error('Google Maps API SDK are not loaded');
+
+		var that = this;
+		var geocoder = new google.maps.Geocoder();
+		geocoder.geocode({
+			address: that.data
+		}, function(results, status) {
+			var data = {};
+			if ( status === google.maps.GeocoderStatus.OK ) {
+				var found = [];
+				for(var i = 0; i < results.length; i++) {
+					var result = results[i];
+					found.push({
+						address: result.formatted_address,
+						lat: result.geometry.location.lat(),
+						lng: result.geometry.location.lng(),
+						accuracy: result.partial_match ? 'partial' : 'exact',
+						_data: result
+					});
+				}
+				data.data = found;
+			}
+			else {
+				data.error = status;
+			}
+
+			return callback(data);
+		});
+	}
+
 	/**
 	 * Clean URL
 	 *
