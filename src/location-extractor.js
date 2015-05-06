@@ -14,36 +14,9 @@
  * @param data String|Array
  * @return Object
  */
-
-'use strict';
-
-function LocationExtractor(data, options) {
-	this.stopWords = [];
+function LocationExtractor(data) {
 	this.data = data || null;
-	this.options = options || {
-		gmaps: options && options.gmaps || true,
-		version: options && options.version || '3',
-		apiKey: options && options.apiKey || '',
-		callback: options && options.callback || 'LocationExtractor'
-	};
-
-	if ( this.options.gmaps === true ) {
-		var opts = this.options;
-		return (function(doc, tag, id, opts) {
-			var ref, sdk;
-			if ( typeof google !== 'undefined' || doc.getElementById(id) ) return;
-			sdk = doc.createElement(tag);
-			sdk.id = id;
-			sdk.async = true;
-			sdk.src = '//maps.googleapis.com/maps/api/js';
-			sdk.src += '?v=' + opts.version;
-			sdk.src += opts.apiKey ? '&key=' + opts.apiKey : opts.apiKey;
-			sdk.src += opts.callback ? '&callback=' + opts.callback : opts.callback;
-			ref = doc.getElementsByTagName(tag)[0];
-			ref.parentNode.insertBefore(sdk, ref);
-		})(document, 'script', 'gmaps-js', opts);
-	}
-
+	this.stopWords = [];
 	return this;
 };
 
