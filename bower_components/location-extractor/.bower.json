@@ -23,13 +23,13 @@
     "test",
     "tests"
   ],
-  "_release": "792bc400cc",
+  "_release": "00d09b1221",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "792bc400cc1cef2a6102f5b7e396f90768598fa6"
+    "commit": "00d09b1221db7c9ba9ba48f57bb0a753e6256ee6"
   },
-  "_source": "https://github.com/jabranr/location-extractor.git",
+  "_source": "git://github.com/jabranr/location-extractor.git",
   "_target": "*",
-  "_originalSource": "https://github.com/jabranr/location-extractor.git"
+  "_originalSource": "location-extractor"
 }

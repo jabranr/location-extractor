@@ -25,6 +25,6 @@
     "tests"
   ],
   "devDependencies": {
-    "location-extractor": "https://github.com/jabranr/location-extractor.git"
+    "location-extractor": "*"
   }
 }

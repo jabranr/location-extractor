@@ -1,11 +1,15 @@
 # Location Extractor
 
-Extract location(s) from a string&mdash;primarily a Tweet. The library intakes a string or array and simplifies it by removing the most common or stop words, panctuation, special characters and Twitter mentions. It then returns the simiplified data in string format that can be used to pass through a Geo service such as Google Maps API Geocoding service. The Google Maps API Geocoding service is also built-in and can be used from the API this library exposes. See below for complete reference.
+Extract location(s) from a string&mdash;primarily a Tweet. The library intakes a string or array and simplifies it by removing the most common or stop words, panctuation, special characters and Twitter mentions. It then returns the simiplified data in string format that can be used to pass through a Geo service such as Google Maps API Geocoding service.
+
+The Google Maps API Geocoding service is also built-in and can be used from the API this library exposes. [See below](#api) for complete reference.
+
+> This is an experiment project.
 
 # Install
 
 ```shell
-bower install location-extractor
+bower install --save-dev location-extractor
 ```
 
 # Use
@@ -20,6 +24,9 @@ If you need to use the built-in Geocoding service of Google Maps API, you need t
 <script src="//maps.googleapis.com/maps/api/js?v=3&key={API_KEY}" type="text/javascript"></script>
 <script src="path/to/location-extractor.js" type="text/javascript"></script>
 ```
+
+# Demo
+[Live demo](http://jabran.me/location-extractor)
 
 # Examples
 
@@ -44,6 +51,8 @@ extractor.extract(function(response) {
 	}
 });
 ```
+If data is not cleaned of common words using `.clean()` then `.extract()` will clean the data itself.
+
 
 Typical response to above example would be:
 
@@ -52,9 +61,24 @@ Object {data: Array[3]}
  data: Array[3]
   0: Object
    _data: Object
+   original: "hotels Victoria London"
    accuracy: "partial"
    address: "Victoria Hotel, 51 Belgrave Road, Pimlico, London SW1V 2BB, UK"
    lat: 51.4903929
    lng: -0.13777159999995092
    __proto__: Object
 ```
+
+# API
+
+#### extractor.**clean()**
+Strip the common and used words from data
+
+#### extractor.**extract()**
+Strip the common and used words from data, and extract location
+
+# License
+MIT License
+
+&copy; Jabran Rafique ([@jabranr](https://twitter.com/jabranr)) 2015
+
