@@ -4,6 +4,8 @@ Extract location(s) from a string&mdash;primarily a Tweet. The library intakes a
 
 The Google Maps API Geocoding service is also built-in and can be used from the API this library exposes. [See below](#API) for complete reference.
 
+> This is an experiment project.
+
 # Install
 
 ```shell
