@@ -21,7 +21,7 @@ Include the required files.
 
 If you need to use the built-in Geocoding service of Google Maps API, you need to include files for those before the library. You may need to get an API Key.
 ```html
-<script src="//maps.googleapis.com/maps/api/js?v=3&mp;key={API_KEY}" type="text/javascript"></script>
+<script src="//maps.googleapis.com/maps/api/js?v=3&key={API_KEY}" type="text/javascript"></script>
 <script src="path/to/location-extractor.js" type="text/javascript"></script>
 ```
 
