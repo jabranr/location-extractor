@@ -19,5 +19,11 @@
   "bugs": {
     "url": "https://github.com/jabranr/location-extractor/issues"
   },
-  "homepage": "https://github.com/jabranr/location-extractor"
+  "homepage": "https://github.com/jabranr/location-extractor",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-uglify": "^0.9.1",
+    "grunt-contrib-watch": "^0.6.1",
+    "load-grunt-tasks": "^3.1.0"
+  }
 }
