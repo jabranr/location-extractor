@@ -2,7 +2,7 @@
 
 Extract location(s) from a string&mdash;primarily a Tweet. The library intakes a string or array and simplifies it by removing the most common or stop words, panctuation, special characters and Twitter mentions. It then returns the simiplified data in string format that can be used to pass through a Geo service such as Google Maps API Geocoding service.
 
-The Google Maps API Geocoding service is also built-in and can be used from the API this library exposes. [See below](#API) for complete reference.
+The Google Maps API Geocoding service is also built-in and can be used from the API this library exposes. [See below](#api) for complete reference.
 
 > This is an experiment project.
 
