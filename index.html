@@ -19,8 +19,9 @@
 				padding: 10px;
 			}
 			pre {
-				color: #c7254e;
 				border: none;
+				color: #c7254e;
+				background-color: #eee;
 			}
 		</style>
 	</head>
@@ -107,7 +108,7 @@
 					}
 
 					extractor.extract(function(data) {
-						outputExtractedLocation.html('<pre>' + JSON.stringify(data.data[0], null, 2) + '</pre>');
+						outputExtractedLocation.html('<pre>' + JSON.stringify(data, null, 2) + '</pre>');
 					});
 				});
 			});

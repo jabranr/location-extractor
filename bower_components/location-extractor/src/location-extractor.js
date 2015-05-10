@@ -56,12 +56,16 @@
 		if ( typeof google === 'undefined' )
 			throw new Error('Google Maps API SDK are not loaded');
 
-		var that = this;
+		if ( ! this.data || ! this.data.length ) return;
+
+		var location = this.clean();
 		var geocoder = new google.maps.Geocoder();
 		geocoder.geocode({
-			address: that.data
+			address: location
 		}, function(results, status) {
-			var data = {};
+			var data = {
+				original: location
+			};
 			if ( status === google.maps.GeocoderStatus.OK ) {
 				var found = [];
 				for(var i = 0; i < results.length; i++) {
