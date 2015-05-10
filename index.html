@@ -2,54 +2,116 @@
 <html>
 	<head>
 		<title>Location Extractor</title>
+		<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
 		<style>
-			body {
-				font-family: sans-serif;
-				font-size: 16px;
-				line-height: 1.5;
-				margin: 0;
-				padding: 0;
-			}
-
 			.container {
-				display: block;
-				width: 100%;
-				max-width: 900px;
-				background-color: #eee;
-				margin: 0 auto;
-				padding: 15px;
+				max-width: 970px;
 			}
-			code {
-				font-family: monospace;
+			.footer {
+				padding-top: 10px;
+				margin-top: 50px;
+				border-top: 1px solid #ddd;
 				font-size: 90%;
-				font-weight: bold;
-				background-color: #ddd;
-				display: inline-block;
-				padding: 0 4px;
+				color: #666;
+			}
+			.output {
+				background-color: #eee;
+				padding: 10px;
+			}
+			pre {
+				color: #c7254e;
+				border: none;
 			}
 		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="page-header">
+						<h1>Location Extractor</h1>
+					</div>
+					<p class="lead">Enter a Tweet or text to extract location/address information from it.</p>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-12 form-horizontal">
+					<div class="form-group">
+						<label class="sr-only">Enter text:</label>
+						<div class="col-sm-8">
+							<input type="text" maxlength="140" id="textField" value="" placeholder="e.g. Do you know any good eating places around Queen Street, Victoria London?" class="form-control">
+						</div>
+						<div class="col-sm-4">
+							<button type="button" id="extractBtn" class="btn btn-default">Extract Location</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-12">
+					<h4>Original text:</h4>
+						<div class="output" id="outputOriginalText"></div>
+
+					<h4>Cleaned text:</h4>
+						<div class="output" id="outputCleanedText"></div>
+
+					<h4>Extracted Location:</h4>
+						<div class="output" id="outputExtractedLocation"></div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="footer col-sm-12">
+					<ul class="list-inline clearfix">
+						<li class="pull-left">&larr; <a href="https://github.com/jabranr/location-extractor">Back to Github</a></li>
+						<li class="pull-right">&copy; Jabran Rafique</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
 		<script src="//code.jquery.com/jquery.js"></script>
 		<script src="//maps.googleapis.com/maps/api/js?v=3"></script>
 		<script src="bower_components/location-extractor/src/location-extractor.js"></script>
 		<script>
 			$(document).ready(function() {
-				var $output = $('#output');
-				var text = 'do you know hotel around queen street, Victoria London W1T 2RH';
-				var extractor = new LocationExtractor(text);
-				extractor.clean();
-				console.log('Input data: ' + text);
-				console.log('Simplified data: ' + extractor.data);
-				extractor.extract(function(data) {
-					console.log(data.data[0]);
+				var outputOriginalText = $('#outputOriginalText');
+				var outputCleanedText = $('#outputCleanedText');
+				var outputExtractedLocation = $('#outputExtractedLocation');
+				var $textField = $('#textField').on('keydown keyup', function(e) {
+					outputOriginalText.html( $(this).val() );
+				});
+
+				var $extractBtn = $('#extractBtn').on('click', function(e) {
+					var $this = $(this);
+					if ( $textField.val() == '' ) {
+						$textField.focus();
+						return;
+					}
+
+					if ( $textField.val() > 140 ) {
+						alert('Text is over 140 characters.');
+						$textField.select();
+						return;
+					}
+
+					var extractor = new LocationExtractor($textField.val());
+					extractor.clean();
+					outputCleanedText.html(extractor.data);
+
+					if ( ! extractor.data ) {
+						$textField.focus();
+						return;
+					}
+
+					extractor.extract(function(data) {
+						outputExtractedLocation.html('<pre>' + JSON.stringify(data.data[0], null, 2) + '</pre>');
+					});
 				});
 			});
 		</script>
-	</head>
-	<body>
-		<div class="container">
-			<h1>Location Extractor</h1>
-			<p>There is nothing to see at this page. Open the console <code>(CMD/CTRL + OPTION/ALT + J/C)</code> to see the output result.</p>
-			<p><small>&larr; <a href="https://github.com/jabranr/location-extractor">Back to Github</a></small></p>
-		</div>
+
 	</body>
 </html>
