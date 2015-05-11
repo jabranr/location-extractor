@@ -76,9 +76,10 @@
 		<script src="//code.jquery.com/jquery.js"></script>
 		<script src="//maps.googleapis.com/maps/api/js?v=3"></script>
 		<script src="bower_components/location-extractor/dist/location-extractor.min.js"></script>
-		<script src="bower_components/defiant.js/dist/defiant.min.js"></script>
+		<!-- <script src="bower_components/defiant.js/dist/defiant.min.js"></script> -->
 		<script>
 			$(document).ready(function() {
+				var cities;
 				var outputOriginalText = $('#outputOriginalText');
 				var outputCleanedText = $('#outputCleanedText');
 				var outputExtractedLocation = $('#outputExtractedLocation');
@@ -86,9 +87,19 @@
 					outputOriginalText.html( $(this).val() );
 				});
 
+				// Get a list of cities from JSON
+				$.getJSON('./cities.json', function(data) {
+					var refined = [];
+					for (var key in data) {
+						if ( data[key] !== '' ) {
+							refined.push(data[key]);
+						}
+					}
+					cities = [].concat.apply([], refined);
+					cities = ''.toLowerCase.call(cities).split(',');
+				});
+
 				var $extractBtn = $('#extractBtn').on('click', function(e) {
-					var cities = $.get('./cities.json');
-					console.log(cities);
 					var $this = $(this);
 					if ( $textField.val() == '' ) {
 						$textField.focus();
@@ -103,6 +114,16 @@
 
 					var extractor = new LocationExtractor($textField.val());
 					extractor.clean();
+
+					function findCity(needle) {
+						for (var i = 0; i < cities.length; i++) {
+							if ( cities[i] === needle ) {
+								return true;
+							}
+						}
+					}
+
+					extractor.data.split(' ').filter(findCity);
 					outputCleanedText.html(extractor.data);
 
 					if ( ! extractor.data ) {
