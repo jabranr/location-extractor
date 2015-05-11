@@ -115,20 +115,19 @@
 					var extractor = new LocationExtractor($textField.val());
 					extractor.clean();
 
+					outputCleanedText.html(extractor.data);
+
+					if ( ! extractor.data ) {
+						$textField.focus();
+						return;
+					}
+
 					function findCity(needle) {
 						for (var i = 0; i < cities.length; i++) {
 							if ( cities[i] === needle ) {
 								return cities[i];
 							}
 						}
-					}
-
-
-					outputCleanedText.html(extractor.data);
-
-					if ( ! extractor.data ) {
-						$textField.focus();
-						return;
 					}
 
 					extractor.extract(function(data) {
