@@ -118,12 +118,16 @@
 					function findCity(needle) {
 						for (var i = 0; i < cities.length; i++) {
 							if ( cities[i] === needle ) {
-								return true;
+								return cities[i];
 							}
 						}
 					}
 
-					extractor.data.split(' ').filter(findCity);
+					var found = extractor.data.split(' ').filter(findCity);
+					if ( found.length ) {
+						extractor.data = found.join(' ');
+					}
+
 					outputCleanedText.html(extractor.data);
 
 					if ( ! extractor.data ) {
