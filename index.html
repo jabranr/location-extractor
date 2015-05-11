@@ -76,6 +76,7 @@
 		<script src="//code.jquery.com/jquery.js"></script>
 		<script src="//maps.googleapis.com/maps/api/js?v=3"></script>
 		<script src="bower_components/location-extractor/dist/location-extractor.min.js"></script>
+		<script src="bower_components/defiant.js/dist/defiant.min.js"></script>
 		<script>
 			$(document).ready(function() {
 				var outputOriginalText = $('#outputOriginalText');
@@ -86,6 +87,8 @@
 				});
 
 				var $extractBtn = $('#extractBtn').on('click', function(e) {
+					var cities = $.get('./cities.json');
+					console.log(cities);
 					var $this = $(this);
 					if ( $textField.val() == '' ) {
 						$textField.focus();

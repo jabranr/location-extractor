@@ -25,6 +25,7 @@
     "tests"
   ],
   "devDependencies": {
-    "location-extractor": "*"
+    "location-extractor": "*",
+    "defiant.js": "https://github.com/hbi99/defiant.js.git#~1.2.6"
   }
 }
