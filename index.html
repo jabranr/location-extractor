@@ -123,10 +123,6 @@
 						}
 					}
 
-					var found = extractor.data.split(' ').filter(findCity);
-					if ( found.length ) {
-						extractor.data = found.join(' ');
-					}
 
 					outputCleanedText.html(extractor.data);
 
@@ -136,7 +132,21 @@
 					}
 
 					extractor.extract(function(data) {
-						outputExtractedLocation.html('<pre>' + JSON.stringify(data, null, 2) + '</pre>');
+						if ( data.error ) {
+							var found = extractor.data.split(' ').filter(findCity);
+							if ( found.length ) {
+								extractor.data = found.join(' ');
+								extractor.extract(function(data) {
+									outputExtractedLocation.html('<pre>' + JSON.stringify(data, null, 2) + '</pre>');
+								});
+							}
+							else {
+								outputExtractedLocation.html('<pre>' + JSON.stringify(data, null, 2) + '</pre>');
+							}
+						}
+						else {
+							outputExtractedLocation.html('<pre>' + JSON.stringify(data, null, 2) + '</pre>');
+						}
 					});
 				});
 			});
